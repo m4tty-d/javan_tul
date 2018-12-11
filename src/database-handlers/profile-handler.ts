@@ -41,7 +41,8 @@ const tryRegister = async (regObject: RegisterParameters) => {
     const newlyGeneratedId = MongooseTypes.ObjectId()
     regObject.password = hashedPw
     const createdResponse = await ProfileModel.create({
-      ...regObject
+      ...regObject,
+      _id: newlyGeneratedId
     })
     return { data: { _id: newlyGeneratedId.toHexString() }, error: null }
   } catch (e) {
@@ -59,8 +60,15 @@ const getProfileById = async (idString: string) => {
   return response
 }
 
+const changeDataForProfile = async (idString: string, data: any) => {
+  const _id = MongooseTypes.ObjectId(idString)
+  const response = await ProfileModel.updateOne({ _id }, { data })
+  return response
+}
+
 export default {
   tryLogin,
   tryRegister,
-  getProfileById
+  getProfileById,
+  changeDataForProfile
 }

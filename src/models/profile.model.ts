@@ -3,7 +3,8 @@ import { Schema, model as mongooseModel, Document, Types } from 'mongoose'
 const profileAttributes = {
   username: { type: String, required: true },
   password: { type: String, required: true },
-  email: { type: String, required: true }
+  email: { type: String, required: true },
+  data: {}
 }
 
 export interface IProfile {
