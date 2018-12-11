@@ -1,7 +1,7 @@
 import { Router as getExpressRouter } from 'express'
 const router = getExpressRouter()
 import profileHandler from '../database-handlers/profile-handler'
-import tokenHandler from '../static-helper/token-handler'
+import tokenHandler from '../static-helper/validator'
 
 router.post('/', async function (req, res, next) {
   let username: string = req.body.username
