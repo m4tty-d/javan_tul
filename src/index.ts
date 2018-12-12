@@ -8,6 +8,7 @@ maindbHandler.connectToDb()
 import express, { NextFunction, Response, Request } from 'express'
 const app = express()
 const appPort = parseInt(process.env.APP_PORT as string, 10) || 3000
+import cors = require('cors')
 
 const handleJsonErrors = (err: Error, req: Request, res: Response, next: NextFunction) => {
   if (err) {
@@ -21,6 +22,7 @@ const handleJsonErrors = (err: Error, req: Request, res: Response, next: NextFun
 // TODO:
 // - REFACTOR
 
+app.use(cors())
 app.use(express.json())
 app.use(handleJsonErrors)
 
